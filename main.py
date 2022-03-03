@@ -164,7 +164,9 @@ class lordboros(object):
 def rgw():
   win.blit(bg, (bgx,0))
   text = font.render('Score: ' + str(score), 1, (0,0,0))
+  text2 = font.render('xpos: ' + str(xpos), 1, (0,0,0))
   win.blit(text, (390, 10))
+  win.blit(text2,(390,50))
   man.draw(win)
   Boros.draw(win)
   for bullet in bullets:
@@ -178,10 +180,15 @@ Boros = lordboros(90, 400, 64, 64, 400)
 sLoop = 0
 bullets = []
 run = True
+
 scroll = True
 
 while run:
   clock.tick(27)
+  if xpos > 100:
+    scroll=True
+  else:
+    scroll=False
 
   if man.hitbox[1] < Boros.hitbox[1] + Boros.hitbox[3] and man.hitbox[1] + man.hitbox[3] > Boros.hitbox[1]:
     if man.hitbox[0] + man.hitbox[2] > Boros.hitbox[0] and man.hitbox[0] < Boros.hitbox[0] + Boros.hitbox[2]:
@@ -233,7 +240,8 @@ while run:
 
     if xpos>5:
       xpos -= 5
-      bgx += 5
+      if scroll:
+        bgx += 5
       Boros.x += 5
 
   elif keys[pygame.K_RIGHT] and man.x < 500 - man.width - man.vel:  
@@ -247,7 +255,8 @@ while run:
 
     if xpos<=2200:
       xpos += 5
-      bgx -= 5
+      if scroll:
+        bgx -= 5
       Boros.x -= 5
      
   else:
