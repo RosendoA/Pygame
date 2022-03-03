@@ -25,8 +25,9 @@ def loadImages(folderName,flip,x_size,y_size):
 wr=loadImages('saitama_walk',0,64,64)
 wl=loadImages('saitama_walk',1,64,64)
 
-bg = pygame.image.load('Game/ship1.png')
-
+bg1 = ['Game/ship1.png', 'Game/ship2.png']
+bg2 = random.choice(bg1)
+bg = pygame.image.load(bg2)
 
 bgx = 0
 xpos = 0
